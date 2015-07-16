@@ -93,8 +93,8 @@ def deepdream(net, base_img, iter_n=5, octave_n=2, octave_scale=1.4, end='incept
     return deprocess(net, src.data[0])
 
 
-img = np.float32(PIL.Image.open('/src/castro.jpg'))
+img = np.float32(PIL.Image.open('/src/input.jpg'))
 
 
 result = deepdream(net, img)
-PIL.Image.fromarray(np.uint8(result)).save("/src/castro/output.jpg")
+PIL.Image.fromarray(np.uint8(result)).save("/src/output.jpg")
