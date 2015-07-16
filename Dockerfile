@@ -1,4 +1,4 @@
-FROM yankennedyio/deepdream
+FROM ryankennedyio/deepdream
 RUN apt-get install -y wget
 ADD ./go.py /src/
 
