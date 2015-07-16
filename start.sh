@@ -8,17 +8,17 @@ if [[ -z $JITTER || -z $OCTAVES || -z $INTERATION_N ]] ; then
   export
 fi
 
-if [[ -z $OCTAVES]] ; then
+if [ -z $OCTAVES] ; then
   echo "Setting Default Number of Octaves: 3"
   export OCTAVES=3
 fi
 
-if [[ -z $INTERATION_N]] ; then
+if [ -z $INTERATION_N] ; then
   echo "Setting Default Number of Interations: 10"
   export INTERATION_N=3
 fi
 
-if [[ -z $JITTER]] ; then
+if [ -z $JITTER] ; then
   echo "Setting Default Jitter: 32"
   export INTERATION_N=3
 fi
