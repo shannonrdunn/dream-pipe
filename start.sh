@@ -10,7 +10,7 @@ fi
 
 if [ -z $OCTAVES] ; then
   echo "Setting Default Number of Octaves: 3"
-  export OCTAVES=3
+  export OCTAVE=3
 fi
 
 if [ -z $INTERATION_N] ; then
