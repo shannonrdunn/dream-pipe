@@ -6,4 +6,4 @@ client_secret = 'b282e5ec9db7b78f93a87c23a1cab33ea443bdd3'
 client = ImgurClient(client_id, client_secret)
 path = '/src/output.jpg'
 # Example request
-upload_from_path(path, config=None, anon=True)
+print client.upload_from_path(path, config=None, anon=True)
