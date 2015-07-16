@@ -20,7 +20,7 @@ fi
 
 if [ -z $JITTER] ; then
   echo "Setting Default Jitter: 32"
-  export INTERATION_N=3
+  export JITTER=3
 fi
 
 find /src/go.py -type f | xargs sed -i -e "s#@@OCTAVE@@#${OCTAVE}#g"
