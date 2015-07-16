@@ -1,5 +1,5 @@
 FROM ryankennedyio/deepdream
 RUN apt-get install -y wget
-ADD ./go.py /src/
+ADD . /src/
 
 ENTRYPOINT /src/start.sh
