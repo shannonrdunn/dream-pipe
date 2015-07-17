@@ -35,7 +35,8 @@ def preprocess(net, img):
 def deprocess(net, img):
     return np.dstack((img + net.transformer.mean['data'])[::-1])
 
-
+def objective_L2(dst):
+    dst.diff[:] = dst.data
 
 def make_step(net, step_size=1.5, end='inception_4c/output',
               jitter=@@JITTER@@, clip=True, objective=objective_L2):
@@ -60,7 +61,7 @@ def make_step(net, step_size=1.5, end='inception_4c/output',
         bias = net.transformer.mean['data']
         src.data[:] = np.clip(src.data, -bias, 255-bias)
 
-def deepdream(net, base_img, iter_n=@@INTERATION_N@@, octave_n=@@OCTAVE@@, octave_scale=1.4, 
+def deepdream(net, base_img, iter_n=@@INTERATION_N@@, octave_n=@@OCTAVE@@, octave_scale=1.4,
               end='inception_4c/output', clip=True, **step_params):
     # prepare base images for all octaves
     octaves = [preprocess(net, base_img)]
