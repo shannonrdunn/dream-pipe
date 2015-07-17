@@ -37,7 +37,8 @@ def deprocess(net, img):
 
 
 
-def make_step(net, step_size=1.5, end='inception_4c/output', jitter=@@JITTER@@, clip=True):
+def make_step(net, step_size=1.5, end='inception_4c/output',
+              jitter=@@JITTER@@, clip=True, objective=objective_L2):
     '''Basic gradient ascent step.'''
 
     src = net.blobs['data'] # input image is stored in Net's 'data' blob
@@ -47,7 +48,7 @@ def make_step(net, step_size=1.5, end='inception_4c/output', jitter=@@JITTER@@, 
     src.data[0] = np.roll(np.roll(src.data[0], ox, -1), oy, -2) # apply jitter shift
 
     net.forward(end=end)
-    dst.diff[:] = dst.data  # specify the optimization objective
+    objective(dst)  # specify the optimization objective
     net.backward(start=end)
     g = src.diff[0]
     # apply normalized ascent step to the input image
@@ -59,7 +60,8 @@ def make_step(net, step_size=1.5, end='inception_4c/output', jitter=@@JITTER@@, 
         bias = net.transformer.mean['data']
         src.data[:] = np.clip(src.data, -bias, 255-bias)
 
-def deepdream(net, base_img, iter_n=@@INTERATION_N@@, octave_n=@@OCTAVE@@, octave_scale=1.4, end='inception_4c/output', clip=True, **step_params):
+def deepdream(net, base_img, iter_n=@@INTERATION_N@@, octave_n=@@OCTAVE@@, octave_scale=1.4, 
+              end='inception_4c/output', clip=True, **step_params):
     # prepare base images for all octaves
     octaves = [preprocess(net, base_img)]
     for i in xrange(octave_n-1):
