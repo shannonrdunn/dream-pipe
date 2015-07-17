@@ -106,7 +106,7 @@ def objective_guide(dst):
 
 img = np.float32(PIL.Image.open('/src/input.jpg'))
 guide = np.float32(PIL.Image.open('/src/guide.jpg'))
-end = 'inception_3b/output'
+end = 'inception_4c/output'
 h, w = guide.shape[:2]
 src, dst = net.blobs['data'], net.blobs[end]
 src.reshape(1,3,h,w)
