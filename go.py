@@ -94,7 +94,15 @@ def deepdream(net, base_img, iter_n=@@INTERATION_N@@, octave_n=@@OCTAVE@@, octav
 
 
 img = np.float32(PIL.Image.open('/src/input.jpg'))
+guide = np.float32(PIL.Image.open('/src/guide.jpg'))
+end = 'inception_3b/output'
+h, w = guide.shape[:2]
+src, dst = net.blobs['data'], net.blobs[end]
+src.reshape(1,3,h,w)
+src.data[0] = preprocess(net, guide)
+net.forward(end=end)
+guide_features = dst.data[0].copy()
 
+result = deepdream(net, img, end=end, objective=objective_guide)
 
-result = deepdream(net, img)
 PIL.Image.fromarray(np.uint8(result)).save("/src/output.jpg")

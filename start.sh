@@ -1,6 +1,7 @@
 #!/bin/bash
 
 wget $IMAGE_URL -O /src/input.jpg
+wget $GUIDE_URL -O /src/guide.jpg
 
 
 if [[ -z $JITTER || -z $OCTAVES || -z $INTERATION_N ]] ; then
