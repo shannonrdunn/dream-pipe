@@ -9,7 +9,7 @@ if [[ -z $JITTER || -z $OCTAVES || -z $INTERATION_N ]] ; then
   export
 fi
 
-if [ -z $OCTAVES] ; then
+if [ -z $OCTAVE] ; then
   echo "Setting Default Number of Octaves: 3"
   export OCTAVE=3
 fi
