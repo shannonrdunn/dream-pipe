@@ -114,6 +114,6 @@ src.data[0] = preprocess(net, guide)
 net.forward(end=end)
 guide_features = dst.data[0].copy()
 
-result = deepdream(net, img, end=end, objective=objective_guide)
+result = deepdream(net, img)
 
 PIL.Image.fromarray(np.uint8(result)).save("/src/output.jpg")
